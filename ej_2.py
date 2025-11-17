@@ -17,7 +17,6 @@ class Edificio:
                     planta = "E"
                 case _:
                     planta = i
-            print(planta)
             self.plantas.append(planta)
         self.plantas.append("A")
     
