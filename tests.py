@@ -88,4 +88,4 @@ def test_event_data_contains_cart_info(event_bus, cart, laptop):
 
 
 def test_end_to_end():
-    pass
+    pass  # Test con lo que un usuario deberia hacer para usar el software
