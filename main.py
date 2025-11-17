@@ -12,7 +12,7 @@ class Cola:
         return self.tareas.popleft()
     
     def tareas_pendientes(self):
-        pass
+        return len(self.tareas)
     
 
 if __name__ == "__main__":
@@ -26,6 +26,8 @@ if __name__ == "__main__":
 
     print(cola.siguiente_tarea())  # procesar_imagen
     print(cola.siguiente_tarea())  # backup
+    
+    print(cola.tareas_pendientes())
 
     print(cola)  # Cola(pendientes=1)
  
