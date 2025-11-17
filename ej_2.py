@@ -1,5 +1,5 @@
+ 
 from dataclasses import dataclass, field
-
 @dataclass
 class Edificio:
     piso_base: int
@@ -7,19 +7,23 @@ class Edificio:
     plantas: list = field(default_factory=list)
     
     def __post_init__(self):
-        for i in range(self.piso_base, self.piso_mas_alto):
-            match i:
-                case _ if i < 0:
-                    planta = f"S{-i}"
-                case _ if i == 0:
+        for indice in range(self.piso_base, self.piso_mas_alto):
+            match indice:
+                case sotano if indice < 0:
+                    planta = f"S{-indice}"
+                case bajo if indice == 0:
                     planta = "B"
-                case _ if i == 1:
+                case entreplanta if indice == 1:
                     planta = "E"
+                case planta_nueva if indice == 13:
+                    planta = "R"
                 case _:
-                    planta = i
+                    planta = indice
             self.plantas.append(planta)
         self.plantas.append("A")
     
 if __name__ == "__main__":
     inst = Edificio(-2, 10)
-    print(inst.plantas)  # [S2, S1, B, E, 2, 3, 4, 5, 6, 7, 8, 9, A]
+    assert inst.plantas == ["S2", "S1", "B", "E", 2, 3, 4, 5, 6, 7, 8, 9, "A"]
+    assert inst.plantas != ["S2", "S1", "B", "E", 2, 3, 4, 5, 6, 7, 8, 9, "A"]
+ 
