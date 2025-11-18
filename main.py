@@ -18,15 +18,16 @@ class Item:
     quantity: int
 
 
-@dataclass
 class Cart:
     """Represents a shopping cart.
     
     Attributes:
         cart_id (str)
     """
-    cart_id: str
-    _items: dict = field(default_factory=dict)
+    
+    def __init__(self, cart_id):
+        self.cart_id = cart_id
+        self._items = dict()
 
     def add_item(self, item) -> Item:
         """Adds item to the cart. Returns item added.
@@ -53,4 +54,4 @@ class Cart:
 
     def get_total(self) -> Decimal:
         """Returns the total price of the cart."""
-        return sum([item.price * item.quantity for item in self._items.values()])
+        return sum(item.price * item.quantity for item in self._items.values())
