@@ -1,14 +1,12 @@
 import pytest
+from main import Item, Cart
+from decimal import Decimal
+
 
 @pytest.fixture
-def event_bus():
-    """EventBus limpio para cada test"""
-    return EventBus()
-
-@pytest.fixture
-def cart(event_bus):
+def cart():
     """Carrito conectado al EventBus"""
-    return Cart(cart_id="cart-001", event_bus=event_bus)
+    return Cart(cart_id="cart-001")
 
 @pytest.fixture
 def laptop():

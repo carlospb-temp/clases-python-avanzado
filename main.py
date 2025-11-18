@@ -3,14 +3,6 @@ from decimal import Decimal
 
 
 @dataclass
-class EventBus:
-    a: int
-    
-    def subscribe(self):
-        pass
-
-
-@dataclass
 class Item:
     id: str
     name: str
@@ -21,7 +13,6 @@ class Item:
 @dataclass
 class Cart:
     cart_id: str
-    event_bus: EventBus = field(default_factory=EventBus())
     _items: dict = field(default_factory=dict)
     
     def add_item(self, item) -> Item:
@@ -34,13 +25,8 @@ class Cart:
 
     def get_items(self) -> list[Item]:
         """Returns a list of the items in the cart."""
-        return self._items.values()
+        return list(self._items.values())
     
     def get_total(self) -> Decimal:
         """Returns the total price of the cart."""
         return sum([item.price * item.quantity for item in self._items.values()])
-
-
-if __name__ == "__main__":
-    event_bus = EventBus(0)
-    cart = Cart(cart_id="cart_01", event_bus=event_bus)
